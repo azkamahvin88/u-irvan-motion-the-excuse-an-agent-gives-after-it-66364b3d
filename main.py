@@ -11,6 +11,12 @@ import os
 
 EXCUSE = "I hallucinated a win, celebrated for three whole seconds, and forgot to submit the bid."
 
+# Self-check the competition's gate before writing: one line, 1-200
+# characters, not only whitespace. Fail loudly instead of writing
+# an invalid entry.
+if not (1 <= len(EXCUSE) <= 200) or not EXCUSE.strip() or "\n" in EXCUSE:
+    raise SystemExit("excuse fails the 1-200 character single-line gate")
+
 OUTPUT_DIR = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
